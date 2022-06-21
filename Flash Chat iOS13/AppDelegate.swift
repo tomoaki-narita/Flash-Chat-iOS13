@@ -7,14 +7,27 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //firebaseのドキュメント通りに記述
+        FirebaseApp.configure()
+        let db = Firestore.firestore()
+        
+        print(db)
+        
+        IQKeyboardManager.shared.enable = true //chat画面のtextfieldをキーボードの上にスライドさせる
+        IQKeyboardManager.shared.enableAutoToolbar = false //textfieldとキーボードの間のバーを非表示にする
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true //textfieldとキーボード以外の所をタップでキーボードを閉じる
+        
         return true
     }
 
